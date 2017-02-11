@@ -1,0 +1,26 @@
+---
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - build-essential
+    - libssl-dev
+  become: yes
+
+- name: install nvm
+  shell:
+    "\\curl -o- {{ node_nvm_install_url }} | bash"
+  args:
+    creates: "{{ node_nvm_path }}"
+  become: yes
+  become_user: "{{ node_user }}"
+
+- name: install node
+  command:
+    bash -c ". ~/.nvm/nvm.sh; nvm install {{ node_version }}"
+  args:
+    creates: "{{ node_install_path }}"
+  become: yes
+  become_user: "{{ node_user }}"

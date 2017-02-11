@@ -1,0 +1,8 @@
+---
+node_nvm_install_url: https://raw.githubusercontent.com/creationix/nvm/v{{ node_nvm_version }}/install.sh
+node_nvm_version: 0.33.0
+node_nvm_path: ~/.nvm
+
+node_install_path: "{{ node_nvm_path }}/versions/node/v{{ node_version }}"
+node_bin_path: "{{ node_install_path }}/bin"
+
